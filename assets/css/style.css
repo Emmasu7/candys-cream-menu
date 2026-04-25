@@ -1,0 +1,350 @@
+/* ════════════════════════════════════════════════════════════
+   CANDY'S CREAM — style.css  (SOLO MÓVIL)
+   ════════════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: "Hello Wishes";
+  src: url("../fonts/Hello_Wishes.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── VARIABLES ──────────────────────────────────────────────── */
+:root {
+  --bg-pink:       #f8d8f2;
+  --bg-lilac:      #eed8ff;
+  --bg-blue:       #d9f0ff;
+
+  --text-dark:     #1a0f18;
+  --title-pink:    #ff5fc4;
+  --accent-blue:   #31c7df;
+  --accent-dot:    #ff92d8;
+
+  --column-bg:     rgba(224, 140, 210, 0.28);
+  --card-bg:       rgba(255, 242, 250, 0.55);
+
+  --shadow-col:    0 10px 28px rgba(170, 90, 160, 0.22);
+  --shadow-card:   0 3px 12px rgba(210, 150, 200, 0.22);
+
+  --r-col:   22px;
+  --r-card:  18px;
+  
+}
+
+/* ── RESET ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img  { display: block; max-width: 100%; height: auto; }
+
+/* ── BODY ───────────────────────────────────────────────────── */
+body {
+  font-family: "Nunito", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-weight: 700;
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(170deg, var(--bg-pink) 0%, var(--bg-lilac) 45%, var(--bg-blue) 100%);
+  position: relative;
+}
+
+/* ── FONDO ──────────────────────────────────────────────────── */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.14), rgba(255,255,255,0.14)),
+    url("../fondo/fondo.png") center top / cover no-repeat;
+  z-index: -2;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(255,255,255,0.6),  transparent 20%),
+    radial-gradient(circle at 85% 22%, rgba(255,255,255,0.42), transparent 18%),
+    radial-gradient(circle at 28% 72%, rgba(255,255,255,0.3),  transparent 20%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.24), transparent 22%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ════════════════════════════════════════════════════════════
+   DRIP BAR
+   ════════════════════════════════════════════════════════════ */
+.drip-bar {
+  position: sticky;
+  top: 0;
+  width: fit-content;
+  min-width: 260px;
+  align-self: center;
+  line-height: 0;
+  z-index: 200;
+  pointer-events: none;
+  filter: drop-shadow(0 5px 10px rgba(0,150,190,0.22));
+}
+
+.drip-svg {
+  display: block;
+  width: fit-content;
+  min-width: 260px;
+  align-self: center;
+  height: 72px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   LAYOUT BASE
+   ════════════════════════════════════════════════════════════ */
+.site-header,
+.catalog-page,
+.site-footer {
+  width: calc(100% - 20px);
+  max-width: 340px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ════════════════════════════════════════════════════════════
+   HEADER
+   ════════════════════════════════════════════════════════════ */
+.site-header {
+  padding: 14px 0 10px;
+  text-align: center;
+}
+
+.logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.logo {
+  width: min(240px, 72vw);
+  max-height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 16px rgba(255, 100, 200, 0.32));
+}
+
+.menu-title {
+  font-family: "Hello Wishes", cursive;
+  font-size: clamp(2.8rem, 12vw, 3.6rem);
+  font-weight: 400;
+  line-height: 0.9;
+  color: var(--title-pink);
+  text-shadow:
+    0 3px 0 rgba(255,255,255,0.8),
+    0 5px 14px rgba(255, 100, 200, 0.25);
+  letter-spacing: 1px;
+}
+
+.menu-cats {
+  font-family: "Fredoka One", "Arial Rounded MT Bold", sans-serif;
+  font-size: clamp(0.82rem, 4vw, 1rem);
+  color: var(--accent-blue);
+  margin-top: 8px;
+  letter-spacing: 0.4px;
+  text-shadow: 0 2px 0 rgba(255,255,255,0.7);
+}
+
+.cat-dot {
+  color: var(--accent-dot);
+  margin: 0 5px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   CATÁLOGO
+   ════════════════════════════════════════════════════════════ */
+.catalog-page {
+  margin-top: 8px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.catalog-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Columna rosada ───────────────────────────────────────── */
+.catalog-column {
+  background: var(--column-bg);
+  border-radius: var(--r-col);
+  padding: 10px 8px;
+  box-shadow: var(--shadow-col);
+  backdrop-filter: blur(6px);
+  width: fit-content;
+  min-width: 260px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   TARJETAS — flex, imagen pegada a la tarjeta, conjunto centrado
+   ════════════════════════════════════════════════════════════ */
+.product-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  padding: 5px 0;
+  width: fit-content;   /* el conjunto ocupa solo lo necesario */
+  margin: 0 auto;       /* se centra dentro de la columna rosada */
+}
+
+.img-right         { flex-direction: row-reverse; }
+.layout-vertical   { flex-direction: row; }
+
+/* ── Imagen ──────────────────────────────────────────────── */
+.product-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.product-image {
+  max-width: 74px;
+  max-height: 90px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter:
+    drop-shadow(3px  0   0 white)
+    drop-shadow(-3px 0   0 white)
+    drop-shadow(0  3px   0 white)
+    drop-shadow(0 -3px   0 white)
+    drop-shadow(2px  2px 0 white)
+    drop-shadow(-2px 2px 0 white)
+    drop-shadow(2px -2px 0 white)
+    drop-shadow(-2px -2px 0 white)
+    drop-shadow(0 6px 8px rgba(0,0,0,0.2));
+}
+
+.card-cono .product-image,
+.card-cucurucho .product-image {
+  max-width: 46px;
+  max-height: 118px;
+}
+
+.card-banana .product-image,
+.card-waffle-especial .product-image {
+  max-width: 80px;
+  max-height: 68px;
+}
+
+.card-vaso-simple .product-image,
+.card-gelatina .product-image,
+.card-sundae .product-image,
+.card-salpicon-helado .product-image,
+.card-salpicon-sencillo .product-image,
+.card-fruta .product-image {
+  max-width: 74px;
+  max-height: 94px;
+}
+
+.card-agua .product-image {
+  max-width: 36px;
+  max-height: 96px;
+}
+
+/* ── Tarjeta blanca — solo el ancho del texto ───────────── */
+.product-info {
+  background: var(--card-bg);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 8px 14px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  width: fit-content;
+}
+
+/* ── Tipografía ─────────────────────────────────────────── */
+.product-info h2 {
+  font-family: "Hello Wishes", cursive;
+  font-size: clamp(0.9rem, 4.2vw, 1.1rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.product-info p {
+  font-family: "Nunito", "Arial Rounded MT Bold", sans-serif;
+  font-size: clamp(0.78rem, 3.2vw, 0.95rem);
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+
+.product-info p strong { font-weight: 900; }
+
+.desc-small {
+  font-size: clamp(0.72rem, 3vw, 0.86rem) !important;
+  font-weight: 600 !important;
+  opacity: 0.68;
+  white-space: nowrap;
+}
+
+.price-big {
+  font-family: "Hello Wishes", cursive !important;
+  font-size: clamp(1.18rem, 5.5vw, 1.5rem) !important;
+  font-weight: 400 !important;
+  margin-top: 3px !important;
+  line-height: 1.1;
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+
+/* Títulos largos — se permite wrap */
+.card-fruta .product-info h2,
+.card-salpicon-helado .product-info h2,
+.card-waffle-especial .product-info h2,
+.card-waffle-simple .product-info h2 {
+  font-size: clamp(0.78rem, 3.6vw, 0.98rem);
+  white-space: nowrap;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   TÍTULO DE CATEGORÍA
+   ════════════════════════════════════════════════════════════ */
+.cat-title {
+  font-family: "Hello Wishes", cursive;
+  font-size: clamp(1.3rem, 6vw, 1.7rem);
+  font-weight: 400;
+  color: var(--title-pink);
+  text-align: center;
+  text-shadow: 0 2px 0 rgba(255,255,255,0.8);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════════════════════ */
+.site-footer {
+  padding: 6px 0 36px;
+  text-align: center;
+}
+
+.footer-text {
+  font-family: "Hello Wishes", cursive;
+  font-size: clamp(1.2rem, 6.5vw, 2rem);
+  font-weight: 400;
+  color: var(--accent-blue);
+  text-shadow: 0 3px 0 rgba(255,255,255,0.75);
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+}
