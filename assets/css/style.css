@@ -29,7 +29,6 @@
 
   --r-col:   22px;
   --r-card:  18px;
-  
 }
 
 /* ── RESET ──────────────────────────────────────────────────── */
@@ -72,14 +71,12 @@ body::before {
 }
 
 /* ════════════════════════════════════════════════════════════
-   DRIP BAR
+   DRIP BAR — CORREGIDO (era width: fit-content, ahora 100%)
    ════════════════════════════════════════════════════════════ */
 .drip-bar {
   position: sticky;
   top: 0;
-  width: fit-content;
-  min-width: 260px;
-  align-self: center;
+  width: 100%;          /* ← FIX: antes era fit-content, partía el SVG */
   line-height: 0;
   z-index: 200;
   pointer-events: none;
@@ -88,9 +85,7 @@ body::before {
 
 .drip-svg {
   display: block;
-  width: fit-content;
-  min-width: 260px;
-  align-self: center;
+  width: 100%;          /* ← FIX: igual, antes fit-content */
   height: 72px;
 }
 
@@ -101,8 +96,7 @@ body::before {
 .catalog-page,
 .site-footer {
   width: calc(100% - 20px);
-  max-width: 340px;
-  max-width: 480px;
+  max-width: 480px;     /* ← LIMPIEZA: se eliminó el max-width: 340px duplicado */
   margin: 0 auto;
 }
 
@@ -186,7 +180,7 @@ body::before {
 }
 
 /* ════════════════════════════════════════════════════════════
-   TARJETAS — flex, imagen pegada a la tarjeta, conjunto centrado
+   TARJETAS
    ════════════════════════════════════════════════════════════ */
 .product-card {
   display: flex;
@@ -194,12 +188,11 @@ body::before {
   align-items: center;
   gap: 0;
   padding: 5px 0;
-  width: fit-content;   /* el conjunto ocupa solo lo necesario */
-  margin: 0 auto;       /* se centra dentro de la columna rosada */
+  width: fit-content;
+  margin: 0 auto;
 }
 
-.img-right         { flex-direction: row-reverse; }
-.layout-vertical   { flex-direction: row; }
+.img-right { flex-direction: row-reverse; }
 
 /* ── Imagen ──────────────────────────────────────────────── */
 .product-image-wrap {
@@ -255,7 +248,7 @@ body::before {
   max-height: 96px;
 }
 
-/* ── Tarjeta blanca — solo el ancho del texto ───────────── */
+/* ── Tarjeta blanca ─────────────────────────────────────── */
 .product-info {
   background: var(--card-bg);
   border-radius: var(--r-card);
@@ -297,17 +290,7 @@ body::before {
   white-space: nowrap;
 }
 
-.price-big {
-  font-family: "Hello Wishes", cursive !important;
-  font-size: clamp(1.18rem, 5.5vw, 1.5rem) !important;
-  font-weight: 400 !important;
-  margin-top: 3px !important;
-  line-height: 1.1;
-  color: var(--text-dark);
-  white-space: nowrap;
-}
-
-/* Títulos largos — se permite wrap */
+/* Títulos largos */
 .card-fruta .product-info h2,
 .card-salpicon-helado .product-info h2,
 .card-waffle-especial .product-info h2,
@@ -315,7 +298,6 @@ body::before {
   font-size: clamp(0.78rem, 3.6vw, 0.98rem);
   white-space: nowrap;
 }
-
 
 /* ════════════════════════════════════════════════════════════
    TÍTULO DE CATEGORÍA
